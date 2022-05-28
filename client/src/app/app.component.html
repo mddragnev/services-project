@@ -1,0 +1,18 @@
+<div class="row-layout header">
+  <div class="row-layout group">
+    <div class="row-layout group_1">
+      <button igxButton="flat" igxRipple routerLink="/view1" class="button">
+        Posts
+      </button>
+      <button igxButton="flat" igxRipple routerLink="/view2" class="button">
+        Create
+      </button>
+    </div>
+  </div>
+</div>
+<div class="column-layout centered-content">
+  <div class="view-container">
+    <router-outlet></router-outlet>
+    <router-outlet></router-outlet>
+  </div>
+</div>

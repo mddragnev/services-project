@@ -1,0 +1,33 @@
+<div class="column-layout group">
+  <div class="row-layout group_1">
+    <igx-icon class="icon">
+      description
+    </igx-icon>
+    <h6 class="h6">
+      Add post
+    </h6>
+  </div>
+  <p class="igx-typography__subtitle-1 text">
+    Title
+  </p>
+  <div class="row-layout group_2">
+    <igx-input-group type="border" class="input">
+      <input type="text" [required]="true" igxInput />
+      <label igxLabel>Add your title</label>
+    </igx-input-group>
+  </div>
+  <div class="row-layout group_3">
+    <igx-input-group type="border" class="input_1">
+      <input type="text" [required]="true" igxInput />
+      <label igxLabel>Description</label>
+    </igx-input-group>
+  </div>
+  <div class="row-layout group_4">
+    <button igxButton="raised" igxRipple class="button">
+      Create
+    </button>
+    <button igxButton="raised" igxRipple routerLink="/view1" class="button">
+      Cancel
+    </button>
+  </div>
+</div>
