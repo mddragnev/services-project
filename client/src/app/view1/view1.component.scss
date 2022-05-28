@@ -20,17 +20,36 @@
   min-height: 50px;
   flex-grow: 1;
   flex-basis: 0;
+  height: 100%;
+}
+.description {
+  width: 100%;
+  overflow: auto;
+  height: 70%;
+  word-wrap: break-word;
+  margin-top: 10px;
 }
 .card {
   position: relative;
   width: 100%;
   height: max-content;
   min-width: 320px;
+  justify-content: space-between;
+  min-height: 20%;
+  height: 100%;
+  margin: 10px;
 }
 .row-layout {
   display: flex;
+  width: 100%;
 }
 .actions-content {
   min-width: 50px;
   min-height: 40px;
+}
+
+.title {
+  font-family: "Titillium Web", sans-serif;
+  font-size: 20px;
+  font-style: normal;
 }

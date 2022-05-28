@@ -12,9 +12,6 @@
 }
 .group {
   background-color: hsla(var(--igx-surface-500));
-  border-color: hsla(var(--igx-grays-200));
-  border-width: 1px;
-  border-style: solid;
   justify-content: flex-start;
   align-items: stretch;
   align-content: flex-start;
@@ -88,11 +85,14 @@
   min-width: min-content;
   flex-shrink: 0;
 }
-.input_1 {
+.input_label {
+  margin: 10px;
+
+}
+.input_field {
+  height: 100%;
   width: 100%;
-  height: max-content;
-  min-width: min-content;
-  flex-shrink: 0;
+  resize: none;
 }
 .button {
   margin: 10px;

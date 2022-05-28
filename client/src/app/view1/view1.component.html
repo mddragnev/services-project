@@ -1,21 +1,20 @@
 <div class="column-layout group">
   <igx-card type="outlined" [horizontal]="true" *ngFor="let item of travelAppDestinations" class="card">
-    <div>
+    <div style="width:90%">
       <div class="row-layout">
         <igx-card-header>
           <h3 igxCardHeaderTitle>
             {{ item.title }}
           </h3>
-          <h5 igxCardHeaderSubtitle>
-          </h5>
+          <div class="description">
+            TESGINGTESGINGTESGINGTESGINGTESGINGTESGINGTESGINGTESGINGTESGINGTESGINGTESGINGTESGINGTESGINGTESGINGTESGINGTESGINGTESGINGTESGINGTESGINGTESGING
+          </div>
         </igx-card-header>
       </div>
     </div>
-    <igx-card-actions [vertical]="true" class="actions-content">
-      <button igxButton="icon" igxRipple>
-        <igx-icon>
-          favorite
-        </igx-icon>
+    <igx-card-actions [vertical]="true" class="actions-content" layout="justify">
+      <button igxButton="icon" (click)="changeLanguage($event)">
+        <span #languageSpan class="fi fi-bg"></span>
       </button>
       <button igxButton="icon" igxRipple>
         <igx-icon>
