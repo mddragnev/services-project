@@ -1,5 +1,5 @@
 <div class="column-layout group">
-  <igx-card type="outlined" [horizontal]="true" *ngFor="let item of travelAppDestinations" class="card">
+  <igx-card [id]='item.id' type="outlined" [horizontal]="true" *ngFor="let item of posts" class="card">
     <div style="width:90%">
       <div class="row-layout">
         <igx-card-header>
@@ -7,16 +7,16 @@
             {{ item.title }}
           </h3>
           <div class="description">
-            TESGINGTESGINGTESGINGTESGINGTESGINGTESGINGTESGINGTESGINGTESGINGTESGINGTESGINGTESGINGTESGINGTESGINGTESGINGTESGINGTESGINGTESGINGTESGINGTESGING
+            {{item.description}}
           </div>
         </igx-card-header>
       </div>
     </div>
     <igx-card-actions [vertical]="true" class="actions-content" layout="justify">
       <button igxButton="icon" (click)="changeLanguage($event)">
-        <span #languageSpan class="fi fi-bg"></span>
+        <span [id]='item.id' class="fi fi-bg"></span>
       </button>
-      <button igxButton="icon" igxRipple>
+      <button igxButton="icon" igxRipple routerLink="/view2" [queryParams]="{id:item.id}">
         <igx-icon>
           edit
         </igx-icon>

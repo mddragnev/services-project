@@ -7,6 +7,7 @@ import { View1Component } from './view1/view1.component';
 import { IgxCardModule, IgxButtonModule, IgxRippleModule, IgxIconModule, IgxInputGroupModule } from 'igniteui-angular';
 import { FormsModule } from '@angular/forms';
 import { View2Component } from './view2/view2.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { View2Component } from './view2/view2.component';
     IgxRippleModule,
     IgxIconModule,
     FormsModule,
-    IgxInputGroupModule
+    IgxInputGroupModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

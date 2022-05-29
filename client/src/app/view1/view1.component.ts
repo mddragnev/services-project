@@ -1,7 +1,10 @@
 import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { debug } from 'console';
 import { IgxCardComponent } from 'igniteui-angular';
-import { TravelAppService } from '../services/travel-app.service';
+import { Post } from '../services/post';
+import { PostsService } from '../services/posts.service';
+import { TranslateRESTService } from '../services/translate-rest.service';
+import { TranslateSoapService } from '../services/translate-soap.service';
+
 
 @Component({
   selector: 'app-view1',
@@ -9,40 +12,53 @@ import { TravelAppService } from '../services/travel-app.service';
   styleUrls: ['./view1.component.scss']
 })
 export class View1Component implements OnInit {
-  @ViewChild('languageSpan') public lang: any;
-  @ViewChildren(IgxCardComponent, {read: ElementRef})
-  public cards!: QueryList<ElementRef>;
+  @ViewChildren(IgxCardComponent)
+  public cards!: QueryList<IgxCardComponent>;
   public travelAppDestinations: any = null;
-
+  public posts: any = null;
   private language = '';
 
   constructor(
-    private travelAppService: TravelAppService,
-  ) {}
+    private postsService: PostsService,
+    private translateSoap: TranslateSoapService,
+    private translateRest: TranslateRESTService
+  ) { }
 
   ngOnInit() {
-    // depending on implementation, data subscriptions might need to be unsubbed later
-    this.travelAppService.getData('Destinations').subscribe(data => this.travelAppDestinations = data);
+    this.postsService.getPosts().subscribe(data => this.posts = data);
   }
 
   public changeLanguage(event: any) {
-    // debugger;
     event.preventDefault();
-    const classList = this.lang.nativeElement.classList.value;
-    if (classList.includes('bg')) {
-      this.language = 'us';
-      this.cards.forEach(card => {
-        card.nativeElement.querySelector('span').classList.remove('fi-bg');
-        card.nativeElement.querySelector('span').classList.add('fi-us');
+    event.stopPropagation();
 
-      });
+    let srcLang = '';
+    let span = event.target;
+    if (span.tagName === 'BUTTON') {
+      span = span.firstChild;
+    }
+    const post = this.posts.find((post: Post) => post.id === parseInt(span.id));
+    const text = post.description;
+    const classList = span.classList.value;
+
+    if (classList.includes('bg')) {
+      this.language = 'en';
+      srcLang = 'bg';
+      span.classList.remove('fi-bg');
+      span.classList.add('fi-us');
     } else {
       this.language = 'bg';
-      this.cards.forEach(card => {
-        card.nativeElement.querySelector('span').classList.remove('fi-us');
-        card.nativeElement.querySelector('span').classList.add('fi-bg');
-
-      });
+      srcLang = 'en';
+      span.classList.remove('fi-us');
+      span.classList.add('fi-bg');
     }
+
+    if (this.language === 'bg') {
+      this.translateSoap.translate(text, this.language, srcLang).subscribe((data: any) => post.description = data.data);
+    } else {
+      this.translateRest.translate(text, this.language, srcLang).subscribe((data: any) => post.description = data);
+    }
+
+
   }
 }
